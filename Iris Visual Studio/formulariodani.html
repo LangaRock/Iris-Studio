@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script language="javascript">
+        // Variables
+        const cotizacionForm = document.getElementById('cotizacion-form');
+        const btnAddProducto = document.getElementById('btn-add-producto');
+        const cotizacionTotal = document.getElementById('cotizacion-total');
+        const productosContainer = document.getElementById('productos-container');
+   
+        // Event listeners
+        cotizacionForm.addEventListener('input', calcularCotizacion);
+        btnAddProducto.addEventListener('click', agregarProducto);
+        productosContainer.addEventListener('click', removerProducto);
+   
+        // Funciones
+        function agregarProducto() {
+           const productoRow = document.createElement('div');
+           productoRow.className = 'producto-row';
+           productoRow.innerHTML = `
+             <input type="text" class="producto-nombre" placeholder="Nombre del producto">
+             <input type="number" class="producto-precio" placeholder="Precio del producto">
+             <button class="btn-remover-producto">Remover</button>
+           `;
+           productosContainer.appendChild(productoRow);
+        }
+   
+        function calcularCotizacion() {
+           // Implementar lógica para calcular la cotización total
+        }
+   
+        function removerProducto(event) {
+           if (event.target.classList.contains('btn-remover-producto')) {
+             event.target.parentElement.remove();
+           }
+        }
+   </script>
+   
+ </head>
+ <body>
+    <form id="cotizacion-form" class="cotizacion-form" onsubmit="return false;">
+        <div class="row">
+          <div class="col">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required>
+          </div>
+          <div class="col">
+            <label for="email">Correo electrónico:</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <label for="telefono">Teléfono:</label>
+            <input type="tel" id="telefono" name="telefono" required>
+          </div>
+          <div class="col">
+            <label for="empresa">Empresa:</label>
+            <input type="text" id="empresa" name="empresa">
+          </div>
+        </div>
+        <h2>Productos / Servicios</h2>
+        <div id="productos-container">
+          <div class="producto-row">
+            <input type="text" class="producto-nombre" placeholder="Nombre del producto / servicio" required>
+            <input type="number" class="producto-cantidad" placeholder="Cantidad" required>
+            <input type="number" class="producto-precio" placeholder="Precio unitario" required>
+            <span class="producto-total">$0</span>
+            <button type="button" class="btn-remove-producto">&times;</button>
+          </div>
+        </div>
+        <button type="button" id="btn-add-producto" class="btn-add-producto">Agregar producto / servicio</button>
+        <div class="cotizacion-total">
+          <label>Total:</label>
+          <span id="cotizacion-total">$0</span>
+        </div>
+        <button type="submit" id="cotizacion-enviar" class="cotizacion-enviar">Enviar cotización</button>
+      </form>
+</body>
+</html>
